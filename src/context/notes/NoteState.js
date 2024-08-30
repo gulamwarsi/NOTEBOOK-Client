@@ -1,21 +1,20 @@
-
 import React, { useState } from "react";
 import NoteContext from "./noteContext";
 
 
 const NoteState = (props) => {
-  const host = "https://mernapp-backend-8sov.onrender.com";
+  const host = "http://localhost:5000";
   const notesInitial = [];
     
   const [notes, setNotes] = useState(notesInitial);
   //get all note
   const getNotes = async () => {
+    const token = localStorage.getItem('token');
     const response = await fetch(`${host}/api/notes/fetchallnotes`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        "auth-token":
-          localStorage.getItem('token'),
+        'auth-token': token,
       
         },
     });
